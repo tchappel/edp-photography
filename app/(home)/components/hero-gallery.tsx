@@ -8,6 +8,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 import Image from "next/image";
 
 const images = [
@@ -17,8 +18,9 @@ const images = [
 ] as const;
 
 const plugins = [
+  Fade(),
   Autoplay({
-    delay: 5000,
+    delay: 6000,
     stopOnInteraction: true,
   }),
 ];

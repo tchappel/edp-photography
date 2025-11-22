@@ -1,78 +1,9 @@
-"use client";
-
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-
-const images = [
-  "/images/hero-gallery/1.jpg",
-  "/images/hero-gallery/2.jpg",
-  "/images/hero-gallery/3.jpg",
-];
+import { HeroGallery } from "@/components/hero-gallery";
 
 export default function Home() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
-
-  useEffect(() => {
-    if (!api) return;
-
-    const updateCurrent = () => {
-      setCurrent(api.selectedScrollSnap());
-    };
-
-    updateCurrent();
-    api.on("select", updateCurrent);
-
-    return () => {
-      api.off("select", updateCurrent);
-    };
-  }, [api]);
-
   return (
     <div>
-      <Carousel
-        setApi={setApi}
-        className="w-screen h-screen"
-        opts={{ loop: true }}
-        plugins={[plugin.current]}
-      >
-        <CarouselContent className="h-screen">
-          {images.map((src, index) => (
-            <CarouselItem key={index} className="h-screen">
-              <div className="relative w-full h-full">
-                <Image
-                  src={src}
-                  alt={`Gallery image ${index + 1}`}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  priority={index === 0}
-                />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-
-        <div className="absolute bottom-4 right-4 z-10 flex gap-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => api?.scrollTo(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                current === index ? "bg-white" : "bg-white/50"
-              }`}
-              aria-label={`Go to image ${index + 1}`}
-            />
-          ))}
-        </div>
-      </Carousel>
+      <HeroGallery />
 
       {/* Mock Gallery Section */}
       <section className="py-24 px-4">

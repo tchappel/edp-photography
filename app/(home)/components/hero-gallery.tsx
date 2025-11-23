@@ -1,4 +1,6 @@
 "use client";
+
+import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import {
@@ -45,7 +47,7 @@ export function HeroGallery() {
   }, [api]);
 
   return (
-    <section>
+    <section className="relative">
       <Carousel
         className="w-full h-screen"
         opts={{ loop: true }}
@@ -80,6 +82,15 @@ export function HeroGallery() {
           ))}
         </div>
       </Carousel>
+      {/* Gradient overlays */}
+      {/* Scroll Hint */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/60 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/60 to-transparent pointer-events-none" />
+      <ChevronDown
+        className="absolute bottom-4 left-1/2 h-18 w-18 text-white motion-safe:animate-bounce-fade"
+        strokeWidth={0.5}
+        aria-hidden
+      />
     </section>
   );
 }

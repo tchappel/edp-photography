@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { ElementType } from "react";
 
-const typographyVariants = cva("font-sans antialiased", {
+export const typographyVariants = cva("font-sans antialiased", {
   variants: {
     variant: {
       h1: "text-3xl tracking-widest leading-relaxed uppercase my-6",
@@ -81,10 +81,7 @@ export const Typography = ({
 
   return (
     <Component
-      className={cn(
-        typographyVariants({ variant, align, noWrap }),
-        className
-      )}
+      className={cn(typographyVariants({ variant, align, noWrap }), className)}
       {...props}
     />
   );

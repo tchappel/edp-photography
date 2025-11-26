@@ -6,20 +6,20 @@ export function Footer() {
   return (
     <Container
       component="footer"
-      className="w-full py-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between"
+      className="flex w-full py-4 flex-col items-center gap-4 sm:grid sm:grid-cols-3"
     >
       {/* Copyright - order-1 on mobile, order-first on lg */}
       <Link
         href="/"
         underline="none"
         variant="h6"
-        className="font-bold p-2 order-3 lg:order-1"
+        className="font-bold p-2 order-3 sm:order-1"
       >
         © EMANUEL DELLA PIA
       </Link>
 
       {/* Social Links - order-2 on mobile, centered on lg */}
-      <div className="flex gap-1 order-1 lg:order-2">
+      <div className="flex gap-1 order-1 sm:order-2 sm:justify-center">
         <Link
           external
           href="https://instagram.com"
@@ -54,7 +54,7 @@ export function Footer() {
         href="/contact"
         underline="none"
         variant="h6"
-        className="font-bold p-2 order-3 lg:order-3"
+        className="font-bold p-2 order-3 sm:order-3 sm:justify-self-end"
       >
         CONTACT
       </Link>

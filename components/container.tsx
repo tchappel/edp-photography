@@ -2,18 +2,17 @@ import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React from "react";
 
-const containerVariants = cva("w-full mx-auto", {
+const containerVariants = cva("", {
   variants: {
     maxWidth: {
-      xs: "max-w-xs",
-      sm: "max-w-sm",
-      md: "max-w-md",
-      lg: "max-w-lg",
-      xl: "max-w-xl",
-      false: "",
+      xs: "max-w-xs mx-auto",
+      sm: "max-w-s mx-auto",
+      md: "max-w-md mx-auto",
+      lg: "max-w-lg mx-auto",
+      xl: "max-w-xl mx-auto",
+      true: "mx-auto mx-auto",
     },
     disableGutters: {
-      true: "",
       false: "px-7 2xl:px-26",
     },
   },
@@ -23,49 +22,24 @@ const containerVariants = cva("w-full mx-auto", {
   },
 });
 
-export interface ContainerProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof containerVariants> {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  className?: string;
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component?: React.ElementType;
-}
+type ContainerProps = React.HTMLAttributes<HTMLElement> &
+  VariantProps<typeof containerVariants> & {
+    component?: React.ElementType;
+  };
 
-export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  (
-    {
-      children,
-      className,
-      maxWidth,
-      disableGutters,
-      component: Component = "div",
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          containerVariants({ maxWidth, disableGutters }),
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+export const Container = ({
+  className,
+  component: Component = "div",
+  maxWidth,
+  disableGutters,
+  ...props
+}: ContainerProps) => {
+  return (
+    <Component
+      className={cn(containerVariants({ maxWidth, disableGutters }), className)}
+      {...props}
+    />
+  );
+};
 
 Container.displayName = "Container";

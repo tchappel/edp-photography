@@ -2,9 +2,12 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { galleryImages } from "../data";
 
-export function Gallery() {
+export function Gallery({
+  className,
+  ...props
+}: Omit<React.ComponentProps<"section">, "children">) {
   return (
-    <section className="flex flex-wrap gap-0">
+    <section className={cn("flex flex-wrap gap-0", className)} {...props}>
       {galleryImages.map((galleryImage, index) => (
         <div
           key={index}

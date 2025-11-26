@@ -7,6 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import { ChevronDown } from "lucide-react";
@@ -27,7 +28,10 @@ const plugins = [
   }),
 ];
 
-export function HeroGallery() {
+export function HeroGallery({
+  className,
+  ...props
+}: Omit<React.ComponentProps<"section">, "children">) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -47,7 +51,7 @@ export function HeroGallery() {
   }, [api]);
 
   return (
-    <section className="relative">
+    <section className={cn("relative", className)} {...props}>
       <Carousel
         className="w-full h-screen"
         opts={{ loop: true }}
@@ -71,23 +75,25 @@ export function HeroGallery() {
         </CarouselContent>
       </Carousel>
       <div className="absolute inset-0 overlay-neutral-y pointer-events-none" />
-      <Container className="absolute bottom-0 left-0 right-0">
-        <div className="flex items-center">
-          <div className="flex-1 flex justify-center">
-            <ChevronDown
-              className="h-18 w-18 text-white motion-safe:animate-bounce-fade"
-              strokeWidth={0.5}
-              aria-hidden
-            />
-          </div>
+      <Container className="absolute bottom-0 left-0 right-0 max-sm:hidden">
+        <div className="relative flex justify-end items-center h-15">
+          <ChevronDown
+            className={cn(
+              "size-18 text-white motion-safe:animate-bounce-fade",
+              "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            )}
+            strokeWidth={0.5}
+            aria-hidden
+          />
           <div className="flex gap-3">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => api?.scrollTo(index)}
-                className={`w-2 h-2 rounded-full border border-white transition-colors ${
+                className={cn(
+                  "w-2 h-2 rounded-full border border-white transition-colors",
                   current === index ? "bg-white" : "bg-transparent"
-                }`}
+                )}
                 aria-label={`Go to image ${index + 1}`}
               />
             ))}

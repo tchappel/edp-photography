@@ -2,12 +2,12 @@
 
 import { Container } from "@/components/container";
 import { Link } from "@/components/link";
+import { SocialLinks } from "@/components/social-links";
 import { Separator } from "@/components/ui/separator";
-import { PAGES } from "@/constants/pages";
+import { mainNav } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { Fragment } from "react";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 type Props = {
   className?: string;
@@ -39,56 +39,25 @@ export function MobileMenu({ isOpen, setIsOpen, className }: Props) {
         </button>
         {/* Navigation Items */}
         <nav className={cn(!isOpen && "hidden", isOpen && "w-full max-w-xs")}>
-          {PAGES.map((page, index) => (
-            <Fragment key={page.path}>
+          {mainNav.map((page, index) => (
+            <Fragment key={page.label}>
               <Link
-                href={page.path}
+                href={page.href}
                 variant="h6"
                 underline="none"
                 className="block text-center py-4"
                 onClick={() => setIsOpen(false)}
               >
-                {page.title}
+                {page.label}
               </Link>
-              {index < PAGES.length - 1 && <Separator className="bg-current" />}
+              {index < mainNav.length - 1 && (
+                <Separator className="bg-current" />
+              )}
             </Fragment>
           ))}
         </nav>
         {/* Social Icons */}
-        <div
-          className={cn(
-            !isOpen && "hidden",
-            isOpen && "flex w-full justify-center gap-6 mt-auto py-4"
-          )}
-        >
-          <Link
-            external
-            href="https://instagram.com"
-            variant="inherit"
-            underline="none"
-            className="p-2"
-          >
-            <FaInstagram className="size-6" />
-          </Link>
-          <Link
-            external
-            href="https://www.youtube.com/"
-            variant="inherit"
-            underline="none"
-            className="p-2"
-          >
-            <FaYoutube className="size-6" />
-          </Link>
-          <Link
-            external
-            href="https://www.facebook.com/"
-            variant="inherit"
-            underline="none"
-            className="p-2"
-          >
-            <FaFacebookF className="size-5" />
-          </Link>
-        </div>
+        <SocialLinks className={cn(!isOpen && "hidden", isOpen && "mt-auto")} />
       </div>
     </Container>
   );

@@ -1,6 +1,7 @@
 import { Container } from "@/components/container";
 import { Link } from "@/components/link";
 import { Typography } from "@/components/typohraphy";
+import { contact } from "@/lib/contact";
 
 export default function ContactPage() {
   return (
@@ -18,11 +19,11 @@ export default function ContactPage() {
           <Typography variant="caption" component="p">
             <Link
               external
-              href="https://maps.google.com/?q=Žerotínova+1850,+130+00+Praha+3-Žižkov"
+              href={contact.address.href}
               variant="inherit"
               underline="hover"
             >
-              Žerotínova 1850, 130 00 Praha 3-Žižkov
+              {contact.address.label}
             </Link>
           </Typography>
         </div>
@@ -34,11 +35,11 @@ export default function ContactPage() {
           <Typography variant="caption" component="p">
             <Link
               external
-              href="mailto:info@emanueldellapia.com"
+              href={`mailto:${contact.email}`}
               underline="hover"
               variant="inherit"
             >
-              info@emanueldellapia.com
+              {contact.email}
             </Link>
           </Typography>
         </div>
@@ -50,7 +51,7 @@ export default function ContactPage() {
           <Typography variant="caption" component="p">
             <Link
               external
-              href="tel:+420777073441"
+              href={`tel:${contact.phone}`}
               variant="inherit"
               underline="hover"
             >

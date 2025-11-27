@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "@/components/link";
 import { Typography } from "@/components/typohraphy";
 import {
@@ -5,10 +7,11 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { PAGES } from "@/constants/pages";
+import { mainNav } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 type DesktopMenuProps = React.ComponentProps<typeof Collapsible> & {
   isOpen: boolean;
@@ -22,8 +25,13 @@ export function DesktopMenu({
 }: DesktopMenuProps) {
   const pathname = usePathname();
 
-  const activePage = PAGES.find((page) => page.path === pathname);
-  const inactivePages = PAGES.filter((page) => page.path !== pathname);
+  const activePage = useMemo(() => {
+    return mainNav.find((page) => page.href === pathname) ?? mainNav[0];
+  }, [pathname]);
+
+  const inactivePages = useMemo(() => {
+    return mainNav.filter((page) => page.href !== pathname);
+  }, [pathname]);
 
   return (
     <div className={cn("flex flex-col items-end", className)}>
@@ -36,7 +44,7 @@ export function DesktopMenu({
               className="font-bold"
               disableGutters
             >
-              {activePage?.title || "HOMEPAGE"}
+              {activePage.label}
             </Typography>
             <ChevronDown
               className={cn(
@@ -49,14 +57,14 @@ export function DesktopMenu({
         <CollapsibleContent className="flex flex-col items-end pb-8 space-y-4">
           {inactivePages.map((page) => (
             <Link
-              key={page.path}
-              href={page.path}
+              key={page.label}
+              href={page.href}
               variant="h6"
               className="font-bold"
               underline="none"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {page.title}
+              {page.label}
             </Link>
           ))}
         </CollapsibleContent>

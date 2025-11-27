@@ -6,6 +6,7 @@ import { Link } from "@/components/link";
 import { Typography } from "@/components/typohraphy";
 import { useKeyPress } from "@/hooks/use-key-press";
 import { useScrollPosition } from "@/hooks/use-scroll-position";
+import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
@@ -58,7 +59,7 @@ export function Navbar() {
         })}
       >
         {/* Logo/Name */}
-        <Link href="/" className="py-2" underline="none">
+        <Link href={routes.home} className="py-2" underline="none">
           <Typography
             variant="h4"
             component="h1"

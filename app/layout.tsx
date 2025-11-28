@@ -44,10 +44,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             <NavbarSpacer />
             {children}
           </main>
-          <Footer />
-          <div className="fixed bottom-44 sm:bottom-20 right-5">
-            <ModeToggle />
+          <div className="sticky bottom-0 h-0">
+            <div className="absolute bottom-0 right-5">
+              <ModeToggle />
+            </div>
           </div>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

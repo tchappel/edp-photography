@@ -59,9 +59,9 @@ export function ContactForm() {
           rows={5}
         />
       </FieldGroup>
-      <Button type="submit" className="mt-7">
-        SEND
-      </Button>
+      <div className="flex justify-end mt-7">
+        <Button type="submit">SEND</Button>
+      </div>
     </form>
   );
 }

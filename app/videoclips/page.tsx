@@ -4,7 +4,7 @@ import { Typography } from "@/components/typohraphy";
 export default function VideoclipsPage() {
   return (
     <Container component="section" className="py-8">
-      <Typography variant="h1" className="mb-8 text-center">
+      <Typography variant="h2" className="mb-8 text-center">
         VIDEOCLIPS
       </Typography>
 

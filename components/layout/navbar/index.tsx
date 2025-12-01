@@ -1,37 +1,36 @@
 "use client";
 
-import { Container } from "@/components/container";
 import { Headroom, HeadroomProps } from "@/components/headroom";
-import { Link } from "@/components/link";
-import { Typography } from "@/components/typohraphy";
-import { useKeyPress } from "@/hooks/use-key-press";
-import { useScrollPosition } from "@/hooks/use-scroll-position";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { useIsMobile } from "@/hooks/use-is-mobile";
+import { useScrollThreshold } from "@/hooks/use-scroll-threshold";
+import { useWindowHeight } from "@/hooks/use-window-height";
 import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
-import { DesktopMenu } from "./desktop-menu";
-import { MobileMenu } from "./mobile-menu";
+import { useMemo } from "react";
+import { DesktopMenu, DesktopMenuTrigger } from "./components/desktop-menu";
+import { MobileMenu, MobileMenuTrigger } from "./components/mobile-menu";
+import { NavbarBrand } from "./components/navbar-brand";
+import { useNavbar } from "./hooks/use-navbar";
 
 export function Navbar() {
-  const scrollY = useScrollPosition();
-  const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const { open, setOpen } = useNavbar();
   const pathname = usePathname();
-  const handleEscape = useCallback((pressed: boolean) => {
-    if (pressed) {
-      setOpen(false);
-    }
-  }, []);
+  const isHomepage = pathname === routes.home;
+  const windowHeight = useWindowHeight({ enabled: isHomepage });
+  const opacityTreshold = windowHeight && windowHeight * 0.75;
+  const isBelowOpacityThreshold = useScrollThreshold({
+    enabled: isHomepage,
+    threshold: opacityTreshold,
+  });
 
-  useKeyPress({ key: "Escape", callback: handleEscape });
-
-  const isPastTransparentPoint =
-    typeof window !== "undefined"
-      ? scrollY > Math.round(window.innerHeight * 0.7)
-      : false;
-
-  const isTransparent = pathname === "/" && !isPastTransparentPoint && !open;
+  const isTransparent = isHomepage && !open && !isBelowOpacityThreshold;
 
   const headroomOptions = useMemo<HeadroomProps["options"]>(
     () => ({
@@ -45,54 +44,49 @@ export function Navbar() {
       },
       onUnpin: () => setOpen(false),
     }),
-    []
+    [setOpen]
   );
 
   return (
-    <nav>
-      <Headroom options={headroomOptions}>
-        <Container
-          className={cn("flex justify-between items-center sm:items-baseline", {
-            "overlay-white-y dark:text-background": open,
-            "bg-transparent text-background dark:text-foreground":
-              isTransparent,
-            "bg-background": !open && !isTransparent,
-          })}
+    <Headroom options={headroomOptions}>
+      <Collapsible open={open} onOpenChange={setOpen} asChild>
+        <nav
+          className={cn(
+            "bg-background text-foreground",
+            isTransparent &&
+              "bg-transparent text-background dark:text-foreground",
+            !isMobile && open && "overlay-white-y dark:text-background"
+          )}
         >
-          {/* Logo/Name */}
-          <Link href={routes.home} className="py-2" underline="none">
-            <Typography
-              variant="h4"
-              component="h1"
-              disableGutters
-              className="font-bold"
-            >
-              EMANUEL DELLA PIA
-            </Typography>
-          </Link>
-          {/* Menu */}
-          <DesktopMenu
-            className="max-sm:hidden"
-            isOpen={open}
-            setIsOpen={setOpen}
-          />
-          <button
-            onClick={() => setOpen(true)}
-            className="inline-block p-2 sm:hidden"
-            aria-label="Toggle navigation"
-            aria-expanded={open}
-            aria-controls="mobileMenu"
+          <div
+            className={cn(
+              "container-fluid h-14",
+              "flex justify-between items-center"
+            )}
           >
-            <Menu className="size-10" />
-          </button>
-        </Container>
-        <MobileMenu
-          id="mobileMenu"
-          className="sm:hidden"
-          isOpen={open}
-          setIsOpen={setOpen}
-        />
-      </Headroom>
-    </nav>
+            <NavbarBrand className="-ml-2" />
+            {isMobile ? (
+              <MobileMenuTrigger
+                open={open}
+                setOpen={setOpen}
+                className="-mr-2"
+              />
+            ) : (
+              <CollapsibleTrigger asChild>
+                <DesktopMenuTrigger open={open} className="-mr-2" />
+              </CollapsibleTrigger>
+            )}
+          </div>
+          {!isMobile && (
+            <CollapsibleContent
+              className={cn("container-fluid flex justify-end pb-10")}
+            >
+              <DesktopMenu setOpen={setOpen} className="-mr-2 w-34" />
+            </CollapsibleContent>
+          )}
+        </nav>
+      </Collapsible>
+      {isMobile && <MobileMenu open={open} setOpen={setOpen} />}
+    </Headroom>
   );
 }

@@ -1,20 +1,20 @@
 import { Container } from "@/components/container";
 import { Link } from "@/components/link";
+import { SocialLinks } from "@/components/social-links";
 import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
-import { SocialLinks } from "../social-links";
 
 export function Footer() {
   return (
     <Container
       component="footer"
       className={cn(
-        "grid grid-cols-1 justify-items-center items-center gap-2 sm:grid-cols-3",
+        "grid grid-cols-1 justify-items-center items-center gap-2 md:grid-cols-3",
         "py-4"
       )}
     >
-      <SocialLinks className="sm:order-2" />
-      <div className={cn("sm:order-3 sm:justify-self-end")}>
+      <SocialLinks className="md:order-2" />
+      <div className={cn("md:order-3 md:justify-self-end md:-mr-2")}>
         <Link
           href={routes.contact}
           underline="none"
@@ -32,7 +32,7 @@ export function Footer() {
         className={cn(
           "font-bold",
           "inline-block p-2",
-          "sm:order-1 sm:justify-self-start"
+          "md:order-1 md:justify-self-start md:-ml-2"
         )}
       >
         © EMANUEL DELLA PIA

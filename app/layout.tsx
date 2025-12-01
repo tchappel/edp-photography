@@ -1,9 +1,8 @@
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { NavbarSpacer } from "@/components/layout/navbar/navbar-spacer";
+import { NavbarSpacer } from "@/components/layout/navbar-spacer";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
-import { FOOTER_HEIGHT } from "@/constants/layout";
 import type { Metadata } from "next";
 import { Geist_Mono, Lato } from "next/font/google";
 import "./globals.css";
@@ -36,20 +35,16 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           disableTransitionOnChange
         >
           <Navbar />
-          <main
-            style={{
-              minHeight: `calc(100vh - ${FOOTER_HEIGHT}px)`,
-            }}
-          >
+          <div className="min-h-screen flex flex-col">
             <NavbarSpacer />
-            {children}
-          </main>
-          <div className="sticky bottom-0 h-0">
-            <div className="absolute bottom-0 right-5">
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          {process.env.NODE_ENV === "development" && (
+            <div className="fixed bottom-5 right-5">
               <ModeToggle />
             </div>
-          </div>
-          <Footer />
+          )}
         </ThemeProvider>
       </body>
     </html>

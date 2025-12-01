@@ -7,52 +7,48 @@ import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { mainNav } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-type Props = Omit<React.ComponentProps<"div">, "children"> & {
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-};
-
 export function MobileMenu({
-  isOpen,
-  setIsOpen,
+  open,
+  setOpen,
   className,
-  id,
-  ...props
-}: Props) {
+}: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  className?: string;
+}) {
+  useScrollLock(open);
+  const trapRef = useFocusTrap<HTMLDivElement>(open);
   const pathname = usePathname();
-  useScrollLock(isOpen);
-  const trapRef = useFocusTrap<HTMLDivElement>(isOpen);
 
   return (
     <div
       ref={trapRef}
       className={cn(
-        isOpen
+        open
           ? "fixed inset-0 flex flex-col bg-background text-foreground h-screen"
           : "hidden",
         className
       )}
       role="dialog"
       aria-modal="true"
-      aria-labelledby={`${id}-label`}
-      id={id}
-      {...props}
+      aria-labelledby="mobileNavigationLabel"
+      id="mobileNavigation"
     >
-      <h2 id={`${id}-label`} className="sr-only">
+      <h2 id="mobileNavigationLabel" className="sr-only">
         Mobile Navigation
       </h2>
-      <div className="container-fluid py-2 flex justify-end">
+      <div className="container-fluid flex justify-end items-center h-14">
         <button
-          onClick={() => setIsOpen(false)}
-          className="p-2"
+          onClick={() => setOpen(false)}
+          className="p-2 -mr-2"
           aria-label="Close Mobile Navigation"
-          aria-expanded={isOpen}
-          aria-controls={id}
+          aria-expanded={open}
+          aria-controls="mobileNavigation"
         >
-          <X className="size-10" />
+          <X className="size-8" strokeWidth={1} />
         </button>
       </div>
 
@@ -69,7 +65,7 @@ export function MobileMenu({
                   "block text-center py-4",
                   isActivePage && "font-extrabold pointer-events-none"
                 )}
-                onClick={() => setIsOpen(false)}
+                onClick={() => setOpen(false)}
                 aria-current={isActivePage ? "page" : undefined}
               >
                 {page.label}
@@ -83,5 +79,27 @@ export function MobileMenu({
       </ul>
       <SocialLinks className="self-center py-4" />
     </div>
+  );
+}
+
+export function MobileMenuTrigger({
+  open,
+  setOpen,
+  className,
+}: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  className?: string;
+}) {
+  return (
+    <button
+      onClick={() => setOpen(true)}
+      className={cn("inline-block p-2", className)}
+      aria-label="Open Navigation Menu"
+      aria-expanded={open}
+      aria-controls="mobileNavigation"
+    >
+      <Menu className="size-8" strokeWidth={1} />
+    </button>
   );
 }

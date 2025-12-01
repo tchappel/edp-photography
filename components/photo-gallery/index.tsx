@@ -47,12 +47,12 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
         spacing={0}
         padding={0}
         targetRowHeight={(containerWidth) => {
-          return containerWidth < 640
+          return containerWidth < 768
             ? containerWidth / 0.75
             : containerWidth / 2.25;
         }}
         rowConstraints={(containerWidth) => {
-          return containerWidth < 640
+          return containerWidth < 768
             ? {
                 maxPhotos: 1,
                 minPhotos: 1,

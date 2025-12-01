@@ -75,7 +75,7 @@ export function HeroGallery({
         </CarouselContent>
       </Carousel>
       <div className="absolute inset-0 overlay-neutral-y pointer-events-none" />
-      <Container className="absolute bottom-0 left-0 right-0 max-sm:hidden">
+      <Container className="absolute bottom-0 left-0 right-0 max-md:hidden">
         <div className="relative flex justify-end items-center h-15">
           <ChevronDown
             className={cn(

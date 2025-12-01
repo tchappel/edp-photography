@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-export function useScrollPosition() {
-  const [scrollY, setScrollY] = useState(0);
+export function useScrollPosition({ enabled = true }) {
+  const [scrollY, setScrollY] = useState<number>();
 
   useEffect(() => {
+    if (!enabled) return;
+
     let ticking = false;
 
     const handleScroll = () => {
@@ -23,7 +25,7 @@ export function useScrollPosition() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [enabled]);
 
   return scrollY;
 }

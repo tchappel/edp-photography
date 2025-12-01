@@ -2,6 +2,7 @@ import { Container } from "@/components/container";
 import { Link } from "@/components/link";
 import { Typography } from "@/components/typohraphy";
 import { contact } from "@/lib/contact";
+import { ContactForm } from "./components/contact-form";
 
 export default function ContactPage() {
   return (
@@ -60,6 +61,7 @@ export default function ContactPage() {
           </Typography>
         </div>
       </div>
+      <ContactForm />
     </Container>
   );
 }

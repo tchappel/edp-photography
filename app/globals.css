@@ -159,7 +159,7 @@
 
 @layer utilities {
   .container-fluid {
-    @apply w-full px-7 2xl:px-26;
+    @apply w-full max-w-384 px-6;
   }
 
   .overlay-neutral-y {

@@ -52,11 +52,11 @@ export function MobileMenu({
         </button>
       </div>
 
-      <ul className="w-full self-center flex-1 flex flex-col justify-center items-center gap-2 overflow-y-auto">
+      <ul className="container-fluid flex-1 flex flex-col justify-center items-center overflow-y-auto">
         {mainNav.map((page, index) => {
           const isActivePage = page.href === pathname;
           return (
-            <li key={page.label} className={cn("container-fluid max-w-xs")}>
+            <li key={page.label} className="w-full max-w-xs">
               <Link
                 href={page.href}
                 variant="h6"

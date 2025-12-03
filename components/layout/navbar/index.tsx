@@ -60,7 +60,7 @@ export function Navbar() {
         >
           <div
             className={cn(
-              "container-fluid h-14",
+              "container-fluid mx-auto h-14",
               "flex justify-between items-center"
             )}
           >
@@ -79,7 +79,7 @@ export function Navbar() {
           </div>
           {!isMobile && (
             <CollapsibleContent
-              className={cn("container-fluid flex justify-end pb-10")}
+              className={cn("container-fluid mx-auto flex justify-end pb-10")}
             >
               <DesktopMenu setOpen={setOpen} className="-mr-2 w-34" />
             </CollapsibleContent>

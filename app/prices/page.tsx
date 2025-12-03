@@ -1,9 +1,8 @@
-import { Container } from "@/components/container";
 import { Typography } from "@/components/typohraphy";
 
 export default function PricesPage() {
   return (
-    <Container component="section" className="py-8">
+    <section className="container-fluid mx-auto py-8">
       <div className="max-w-5xl space-y-16">
         <Typography variant="h3" component="h1" className="mb-12">
           Prices
@@ -143,6 +142,6 @@ export default function PricesPage() {
           </Typography>
         </section>
       </div>
-    </Container>
+    </section>
   );
 }

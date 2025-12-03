@@ -1,10 +1,9 @@
-import { Container } from "@/components/container";
 import { Typography } from "@/components/typohraphy";
 import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <Container component="section" className="py-4">
+    <section className="container-fluid mx-auto py-4">
       <div className="flex flex-col md:flex-row gap-12 md:gap-16 mb-16">
         {/* Quote and Content */}
         <div className="order-2 md:order-1">
@@ -71,6 +70,6 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-    </Container>
+    </section>
   );
 }

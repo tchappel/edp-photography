@@ -1,6 +1,5 @@
 "use client";
 
-import { Container } from "@/components/container";
 import {
   Carousel,
   CarouselApi,
@@ -75,8 +74,8 @@ export function HeroGallery({
         </CarouselContent>
       </Carousel>
       <div className="absolute inset-0 overlay-neutral-y pointer-events-none" />
-      <Container className="absolute bottom-0 left-0 right-0 max-md:hidden">
-        <div className="relative flex justify-end items-center h-15">
+      <div className="absolute bottom-0 left-0 right-0 max-md:hidden">
+        <div className="container-fluid mx-auto relative flex justify-end items-center h-15">
           <ChevronDown
             className={cn(
               "size-18 text-white motion-safe:animate-bounce-fade",
@@ -99,7 +98,7 @@ export function HeroGallery({
             ))}
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

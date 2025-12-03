@@ -1,9 +1,8 @@
-import { Container } from "@/components/container";
 import { Typography } from "@/components/typohraphy";
 
 export default function WorkshopsPage() {
   return (
-    <Container component="section" className="py-8">
+    <section className="container-fluid mx-auto py-8">
       <div className="max-w-5xl space-y-12">
         <Typography variant="h3" component="h1" className="mb-12">
           Workshops
@@ -16,7 +15,10 @@ export default function WorkshopsPage() {
               Studio Nude Photography
             </Typography>
 
-            <Typography variant="subtitle1" className="text-gray-600 dark:text-gray-400">
+            <Typography
+              variant="subtitle1"
+              className="text-gray-600 dark:text-gray-400"
+            >
               Weekday Session
             </Typography>
 
@@ -41,11 +43,17 @@ export default function WorkshopsPage() {
                 <li>Nikon D100 camera rental (complimentary)</li>
                 <li>Refreshments (beverages, coffee/tea, water, pizza)</li>
                 <li>Photographer guidance available</li>
-                <li>Model permission for personal use (exhibitions, publications, magazine features, competitions)</li>
+                <li>
+                  Model permission for personal use (exhibitions, publications,
+                  magazine features, competitions)
+                </li>
               </ul>
             </Typography>
 
-            <Typography variant="body2" className="italic text-gray-600 dark:text-gray-400">
+            <Typography
+              variant="body2"
+              className="italic text-gray-600 dark:text-gray-400"
+            >
               Extended shooting available for additional fee
             </Typography>
           </div>
@@ -56,7 +64,10 @@ export default function WorkshopsPage() {
               Studio Nude Photography
             </Typography>
 
-            <Typography variant="subtitle1" className="text-gray-600 dark:text-gray-400">
+            <Typography
+              variant="subtitle1"
+              className="text-gray-600 dark:text-gray-400"
+            >
               Weekend Session
             </Typography>
 
@@ -81,16 +92,22 @@ export default function WorkshopsPage() {
                 <li>Nikon D100 camera rental (complimentary)</li>
                 <li>Refreshments (beverages, coffee/tea, water, pizza)</li>
                 <li>Photographer guidance available</li>
-                <li>Model permission for personal use (exhibitions, publications, magazine features, competitions)</li>
+                <li>
+                  Model permission for personal use (exhibitions, publications,
+                  magazine features, competitions)
+                </li>
               </ul>
             </Typography>
 
-            <Typography variant="body2" className="italic text-gray-600 dark:text-gray-400">
+            <Typography
+              variant="body2"
+              className="italic text-gray-600 dark:text-gray-400"
+            >
               Extended shooting available for additional fee
             </Typography>
           </div>
         </div>
       </div>
-    </Container>
+    </section>
   );
 }

@@ -1,9 +1,8 @@
-import { Container } from "@/components/container";
 import { Typography } from "@/components/typohraphy";
 
 export default function VideoclipsPage() {
   return (
-    <Container component="section" className="py-8">
+    <section className="container-fluid mx-auto py-8">
       <Typography variant="h2" className="mb-8 text-center">
         VIDEOCLIPS
       </Typography>
@@ -22,6 +21,6 @@ export default function VideoclipsPage() {
           </div>
         </div>
       </div>
-    </Container>
+    </section>
   );
 }

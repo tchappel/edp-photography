@@ -6,7 +6,7 @@ import { ContactForm } from "./components/contact-form";
 
 export default function ContactPage() {
   return (
-    <section className="container-fluid mx-auto py-8">
+    <section className="container-fluid mx-auto my-8">
       <h2 className={cn(typography({ variant: "h2" }), "mb-8")}>
         GET IN TOUCH
       </h2>

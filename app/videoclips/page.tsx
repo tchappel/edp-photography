@@ -2,7 +2,7 @@ import { Typography } from "@/components/typohraphy";
 
 export default function VideoclipsPage() {
   return (
-    <section className="container-fluid mx-auto py-8">
+    <section className="container-fluid mx-auto my-8">
       <Typography variant="h2" className="mb-8 text-center">
         VIDEOCLIPS
       </Typography>

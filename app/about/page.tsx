@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <section className="container-fluid mx-auto py-4">
+    <section className="container-fluid mx-auto my-8">
       <div className="flex flex-col md:flex-row gap-12 md:gap-16 mb-16">
         {/* Quote and Content */}
         <div className="order-2 md:order-1">

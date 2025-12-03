@@ -2,7 +2,7 @@ import { Typography } from "@/components/typohraphy";
 
 export default function WorkshopsPage() {
   return (
-    <section className="container-fluid mx-auto py-8">
+    <section className="container-fluid mx-auto my-8">
       <div className="max-w-5xl space-y-12">
         <Typography variant="h3" component="h1" className="mb-12">
           Workshops

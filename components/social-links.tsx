@@ -23,9 +23,7 @@ export function SocialLinks({
             <Link
               external
               href={social.url}
-              variant="inherit"
-              underline="none"
-              className="inline-block p-2"
+              className="inline-block p-2 no-underline"
               aria-label={social.name}
             >
               <Icon className="size-6" />

@@ -4,6 +4,7 @@ import { Link } from "@/components/link";
 import { Typography } from "@/components/typohraphy";
 import { mainNav } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
+import { typography } from "@/lib/variants/typography";
 import { ChevronDown } from "lucide-react";
 import { useMemo } from "react";
 import { useActivePage } from "../hooks/use-active-page";
@@ -61,12 +62,13 @@ export function DesktopMenu({
   return (
     <ul className={cn("flex flex-col", className)}>
       {inactivePages.map((page) => (
-        <li key={page.label}>
+        <li
+          key={page.label}
+          className={cn(typography({ variant: "h6" }), "font-bold")}
+        >
           <Link
             href={page.href}
-            variant="h6"
-            className="block font-bold p-2"
-            underline="none"
+            className="block p-2 no-underline"
             onClick={() => setOpen(false)}
           >
             {page.label}

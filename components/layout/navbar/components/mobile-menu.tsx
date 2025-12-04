@@ -7,6 +7,7 @@ import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { mainNav } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
+import { typography } from "@/lib/variants/typography";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -56,13 +57,14 @@ export function MobileMenu({
         {mainNav.map((page, index) => {
           const isActivePage = page.href === pathname;
           return (
-            <li key={page.label} className="w-full max-w-xs">
+            <li
+              key={page.label}
+              className={cn("w-full max-w-xs", typography({ variant: "h6" }))}
+            >
               <Link
                 href={page.href}
-                variant="h6"
-                underline="none"
                 className={cn(
-                  "block text-center py-4",
+                  "block text-center py-4 no-underline",
                   isActivePage && "font-extrabold pointer-events-none"
                 )}
                 onClick={() => setOpen(false)}

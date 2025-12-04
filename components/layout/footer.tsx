@@ -1,6 +1,8 @@
 import { Link } from "@/components/link";
 import { SocialLinks } from "@/components/social-links";
 import { routes } from "@/lib/routes";
+import { cn } from "@/lib/utils";
+import { typography } from "@/lib/variants/typography";
 
 export function Footer() {
   return (
@@ -8,24 +10,22 @@ export function Footer() {
       <SocialLinks className="md:order-2" />
       <Link
         href={routes.contact}
-        underline="none"
-        variant="h6"
-        className="
-            md:order-3 md:justify-self-end md:-mr-2 p-2
-            font-bold
-          "
+        className={cn(
+          "md:order-3 md:justify-self-end md:-mr-2 p-2",
+          typography({ variant: "h6" }),
+          "font-bold no-underline"
+        )}
       >
         CONTACT
       </Link>
 
       <Link
         href={routes.home}
-        underline="none"
-        variant="h6"
-        className="
-          md:order-1 md:justify-self-start md:-ml-2 p-2
-          font-bold
-        "
+        className={cn(
+          "md:order-1 md:justify-self-start md:-ml-2 p-2",
+          typography({ variant: "h6" }),
+          "font-bold no-underline"
+        )}
       >
         © EMANUEL DELLA PIA
       </Link>

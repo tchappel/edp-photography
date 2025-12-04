@@ -26,8 +26,7 @@ export default function ContactPage() {
                 <Link
                   external
                   href={contact.address.href}
-                  variant="inherit"
-                  underline="hover"
+                  className="hover:underline"
                 >
                   {contact.address.label}
                 </Link>
@@ -42,8 +41,7 @@ export default function ContactPage() {
                 <Link
                   external
                   href={`mailto:${contact.email}`}
-                  underline="hover"
-                  variant="inherit"
+                  className="hover:underline"
                 >
                   {contact.email}
                 </Link>
@@ -58,8 +56,7 @@ export default function ContactPage() {
                 <Link
                   external
                   href={`tel:${contact.phone}`}
-                  variant="inherit"
-                  underline="hover"
+                  className="hover:underline"
                 >
                   +420 777 07 34 41
                 </Link>

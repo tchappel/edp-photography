@@ -1,5 +1,6 @@
+import { cn } from "@/lib/utils";
+import { typography } from "@/lib/variants/typography";
 import Image from "next/image";
-import { Typography } from "../typohraphy";
 
 type GalleryImageProps = Pick<
   React.ComponentProps<typeof Image>,
@@ -21,7 +22,7 @@ export function GalleryImage({
   blurDataURL,
 }: GalleryImageProps) {
   return (
-    <div
+    <figure
       className="group relative w-full"
       style={{
         aspectRatio: `${width} / ${height}`,
@@ -40,48 +41,33 @@ export function GalleryImage({
           sizes={sizes}
         />
       </div>
-
-      {/* Desktop overlay - appears on hover */}
-      <div className="absolute inset-x-0 bottom-0 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="bg-linear-to-t from-black/90 via-black/70 to-transparent p-6 text-background dark:text-foreground">
-          <Typography
-            variant="h6"
-            component="h3"
-            className="font-bold"
-            disableGutters
-          >
-            {title}
-          </Typography>
-          <Typography
-            variant="caption"
-            component="p"
-            disableGutters
-            className="uppercase"
-          >
-            {description}
-          </Typography>
-        </div>
-      </div>
-
-      {/* Mobile text - always visible below image */}
-      <div className="block md:hidden p-6">
-        <Typography
-          variant="h6"
-          component="h3"
-          className="font-bold"
-          disableGutters
+      <figcaption
+        className="
+        p-6
+        md:absolute md:inset-x-0 md:bottom-0
+        md:text-background md:dark:text-foreground
+        md:opacity-0 md:bg-linear-to-t md:from-black/90 md:via-black/70 md:to-transparent
+        md:group-hover:opacity-100
+        md:transition-opacity md:duration-300
+      "
+      >
+        <h3
+          className={cn(
+            typography({ variant: "h6", disableGutters: true }),
+            "font-bold"
+          )}
         >
           {title}
-        </Typography>
-        <Typography
-          variant="caption"
-          component="p"
-          disableGutters
-          className="uppercase"
+        </h3>
+        <p
+          className={cn(
+            typography({ variant: "caption", disableGutters: true }),
+            "uppercase"
+          )}
         >
           {description}
-        </Typography>
-      </div>
-    </div>
+        </p>
+      </figcaption>
+    </figure>
   );
 }

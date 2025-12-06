@@ -4,7 +4,7 @@ import { env } from "./config/env";
 const nextConfig: NextConfig = {
   images: {
     dangerouslyAllowLocalIP: process.env.NODE_ENV === "development",
-    qualities: [10, 75, 90],
+    qualities: [10, 75, 85],
     remotePatterns: [
       new URL("http://emanueldellapia.com/**"),
       new URL("https://emanueldellapia.com/**"),

@@ -7,14 +7,10 @@ import { resolveStrapiMediaUrl } from "@/lib/strapi/utils";
 export default async function Home() {
   const homepageData = await getHomepageData();
 
-  if (!homepageData) {
-    throw new Error("homepageData is undefined");
-  }
+  const heroGalleryImages = homepageData?.data?.heroGallery?.images;
 
-  const heroGalleryImages = homepageData.data.heroGallery.images;
-
-  if (!heroGalleryImages) {
-    throw new Error("heroGalleryImages is undefined");
+  if (!heroGalleryImages || heroGalleryImages.length === 0) {
+    throw new Error("Homepage hero gallery images not found in CMS");
   }
 
   const images = heroGalleryImages.map((heroGalleryImage) => ({

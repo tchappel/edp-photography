@@ -28,7 +28,7 @@ export function HeroGalleryImage({
         className="object-cover"
         alt={alt}
         priority={priority}
-        quality={90}
+        quality={85}
       />
       <div className="absolute inset-0 overlay-neutral-y" />
       <figcaption className="absolute inset-x-0 bottom-0">

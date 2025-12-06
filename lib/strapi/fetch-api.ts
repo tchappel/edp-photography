@@ -77,8 +77,6 @@ export async function fetchAPI<
     }
   }
 
-  console.log("url.href: ", url.href);
-
   const isFormData = body instanceof FormData;
 
   const fetchOptions: RequestInit & { next?: NextFetchConfig } = {

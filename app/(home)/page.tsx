@@ -1,12 +1,28 @@
 import { HeroGallery } from "@/components/hero-gallery";
 import { PhotoGallery } from "@/components/photo-gallery";
+import { getHomepageData } from "@/data/homepage";
 import { homeGallery } from "@/lib/home-gallery";
-import { homeHeroGallery } from "@/lib/home-hero-gallery";
+import { resolveStrapiMediaUrl } from "@/lib/strapi/utils";
 
-export default function Home() {
+export default async function Home() {
+  const homepageData = await getHomepageData();
+
+  const heroGalleryImages = homepageData?.data?.heroGallery?.images;
+
+  if (!heroGalleryImages || heroGalleryImages.length === 0) {
+    throw new Error("Homepage hero gallery images not found in CMS");
+  }
+
+  const images = heroGalleryImages.map((heroGalleryImage) => ({
+    title: heroGalleryImage.title,
+    description: heroGalleryImage.description,
+    alt: heroGalleryImage.image.alternativeText,
+    url: resolveStrapiMediaUrl(heroGalleryImage.image.url),
+  }));
+
   return (
     <>
-      <HeroGallery photos={homeHeroGallery} />
+      <HeroGallery images={images} />
       <PhotoGallery photos={homeGallery} />
     </>
   );

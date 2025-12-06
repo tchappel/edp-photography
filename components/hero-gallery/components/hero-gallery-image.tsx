@@ -23,8 +23,7 @@ export function HeroGalleryImage({
       <Image
         fill
         src={src}
-        placeholder="empty"
-        blurDataURL={`${src}?w=10&q=10`}
+        placeholder="blur"
         className="object-cover"
         alt={alt}
         priority={priority}

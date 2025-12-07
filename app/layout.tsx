@@ -4,6 +4,7 @@ import { NavbarSpacer } from "@/components/layout/navbar-spacer";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getGlobal } from "@/data/global";
+import { routes } from "@/lib/routes";
 import type { Metadata } from "next";
 import { Geist_Mono, Lato } from "next/font/google";
 import "./globals.css";
@@ -25,10 +26,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: globalData.seo.metaTitle,
     description: globalData.seo.metaDescription,
+    keywords: globalData.seo.keywords,
   };
 }
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({
+  children,
+}: LayoutProps<typeof routes.home>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${lato.variable} ${geistMono.variable} antialiased`}>

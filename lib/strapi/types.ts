@@ -483,7 +483,7 @@ export interface operations {
     "global/get/global": {
         parameters: {
             query?: {
-                fields?: ("email" | "phone" | "address" | "googleMapsUrl" | "createdAt" | "updatedAt" | "publishedAt")[];
+                fields?: ("email" | "phone" | "address" | "googleMapsUrl" | "instagram" | "facebook" | "createdAt" | "updatedAt" | "publishedAt")[];
                 populate?: "*" | "seo" | "seo"[];
                 filters?: {
                     [key: string]: unknown;
@@ -512,9 +512,11 @@ export interface operations {
                             phone: string;
                             address: string;
                             googleMapsUrl: string;
+                            instagram: string;
+                            facebook: string;
                             createdAt?: string;
                             updatedAt?: string;
-                            /** @default 2025-12-07T13:40:05.598Z */
+                            /** @default 2025-12-08T13:58:16.431Z */
                             publishedAt: string;
                             seo: {
                                 metaTitle: string;
@@ -544,7 +546,7 @@ export interface operations {
                                     provider_metadata?: unknown;
                                     createdAt?: string;
                                     updatedAt?: string;
-                                    /** @default 2025-12-07T13:40:05.608Z */
+                                    /** @default 2025-12-08T13:58:16.440Z */
                                     publishedAt: string;
                                     related: unknown;
                                 };
@@ -573,7 +575,7 @@ export interface operations {
                                         provider_metadata?: unknown;
                                         createdAt?: string;
                                         updatedAt?: string;
-                                        /** @default 2025-12-07T13:40:05.608Z */
+                                        /** @default 2025-12-08T13:58:16.440Z */
                                         publishedAt: string;
                                         related: unknown;
                                     };
@@ -623,7 +625,7 @@ export interface operations {
     "global/put/global": {
         parameters: {
             query?: {
-                fields?: ("email" | "phone" | "address" | "googleMapsUrl" | "createdAt" | "updatedAt" | "publishedAt")[];
+                fields?: ("email" | "phone" | "address" | "googleMapsUrl" | "instagram" | "facebook" | "createdAt" | "updatedAt" | "publishedAt")[];
                 populate?: "*" | "seo" | "seo"[];
                 status?: "draft" | "published";
             };
@@ -640,7 +642,9 @@ export interface operations {
                         phone?: string;
                         address?: string;
                         googleMapsUrl?: string;
-                        /** @default 2025-12-07T13:40:05.615Z */
+                        instagram?: string;
+                        facebook?: string;
+                        /** @default 2025-12-08T13:58:16.446Z */
                         publishedAt?: string;
                         seo?: unknown;
                     };
@@ -664,9 +668,11 @@ export interface operations {
                             phone: string;
                             address: string;
                             googleMapsUrl: string;
+                            instagram: string;
+                            facebook: string;
                             createdAt?: string;
                             updatedAt?: string;
-                            /** @default 2025-12-07T13:40:05.616Z */
+                            /** @default 2025-12-08T13:58:16.448Z */
                             publishedAt: string;
                             seo: {
                                 metaTitle: string;
@@ -696,7 +702,7 @@ export interface operations {
                                     provider_metadata?: unknown;
                                     createdAt?: string;
                                     updatedAt?: string;
-                                    /** @default 2025-12-07T13:40:05.608Z */
+                                    /** @default 2025-12-08T13:58:16.440Z */
                                     publishedAt: string;
                                     related: unknown;
                                 };
@@ -725,7 +731,7 @@ export interface operations {
                                         provider_metadata?: unknown;
                                         createdAt?: string;
                                         updatedAt?: string;
-                                        /** @default 2025-12-07T13:40:05.608Z */
+                                        /** @default 2025-12-08T13:58:16.440Z */
                                         publishedAt: string;
                                         related: unknown;
                                     };
@@ -775,7 +781,7 @@ export interface operations {
     "global/delete/global": {
         parameters: {
             query?: {
-                fields?: ("email" | "phone" | "address" | "googleMapsUrl" | "createdAt" | "updatedAt" | "publishedAt")[];
+                fields?: ("email" | "phone" | "address" | "googleMapsUrl" | "instagram" | "facebook" | "createdAt" | "updatedAt" | "publishedAt")[];
                 populate?: "*" | "seo" | "seo"[];
                 status?: "draft" | "published";
             };
@@ -801,9 +807,11 @@ export interface operations {
                             phone: string;
                             address: string;
                             googleMapsUrl: string;
+                            instagram: string;
+                            facebook: string;
                             createdAt?: string;
                             updatedAt?: string;
-                            /** @default 2025-12-07T13:40:05.619Z */
+                            /** @default 2025-12-08T13:58:16.452Z */
                             publishedAt: string;
                             seo: {
                                 metaTitle: string;
@@ -833,7 +841,7 @@ export interface operations {
                                     provider_metadata?: unknown;
                                     createdAt?: string;
                                     updatedAt?: string;
-                                    /** @default 2025-12-07T13:40:05.608Z */
+                                    /** @default 2025-12-08T13:58:16.440Z */
                                     publishedAt: string;
                                     related: unknown;
                                 };
@@ -862,7 +870,7 @@ export interface operations {
                                         provider_metadata?: unknown;
                                         createdAt?: string;
                                         updatedAt?: string;
-                                        /** @default 2025-12-07T13:40:05.608Z */
+                                        /** @default 2025-12-08T13:58:16.440Z */
                                         publishedAt: string;
                                         related: unknown;
                                     };
@@ -938,7 +946,7 @@ export interface operations {
                             id: number;
                             createdAt?: string;
                             updatedAt?: string;
-                            /** @default 2025-12-07T13:40:05.623Z */
+                            /** @default 2025-12-08T13:58:16.455Z */
                             publishedAt: string;
                             heroGallery: {
                                 images?: {
@@ -964,7 +972,7 @@ export interface operations {
                                         provider_metadata?: unknown;
                                         createdAt?: string;
                                         updatedAt?: string;
-                                        /** @default 2025-12-07T13:40:05.608Z */
+                                        /** @default 2025-12-08T13:58:16.440Z */
                                         publishedAt: string;
                                         related: unknown;
                                     };
@@ -1026,7 +1034,7 @@ export interface operations {
             content: {
                 "application/json": {
                     data: {
-                        /** @default 2025-12-07T13:40:05.626Z */
+                        /** @default 2025-12-08T13:58:16.459Z */
                         publishedAt?: string;
                         heroGallery?: unknown;
                     };
@@ -1047,7 +1055,7 @@ export interface operations {
                             id: number;
                             createdAt?: string;
                             updatedAt?: string;
-                            /** @default 2025-12-07T13:40:05.627Z */
+                            /** @default 2025-12-08T13:58:16.459Z */
                             publishedAt: string;
                             heroGallery: {
                                 images?: {
@@ -1073,7 +1081,7 @@ export interface operations {
                                         provider_metadata?: unknown;
                                         createdAt?: string;
                                         updatedAt?: string;
-                                        /** @default 2025-12-07T13:40:05.608Z */
+                                        /** @default 2025-12-08T13:58:16.440Z */
                                         publishedAt: string;
                                         related: unknown;
                                     };
@@ -1146,7 +1154,7 @@ export interface operations {
                             id: number;
                             createdAt?: string;
                             updatedAt?: string;
-                            /** @default 2025-12-07T13:40:05.629Z */
+                            /** @default 2025-12-08T13:58:16.461Z */
                             publishedAt: string;
                             heroGallery: {
                                 images?: {
@@ -1172,7 +1180,7 @@ export interface operations {
                                         provider_metadata?: unknown;
                                         createdAt?: string;
                                         updatedAt?: string;
-                                        /** @default 2025-12-07T13:40:05.608Z */
+                                        /** @default 2025-12-08T13:58:16.440Z */
                                         publishedAt: string;
                                         related: unknown;
                                     };

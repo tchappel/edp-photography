@@ -1,23 +1,23 @@
 import { Link } from "@/components/link";
-import { contact } from "@/lib/contact";
+import { getGlobal } from "@/data/global";
 import { cn } from "@/lib/utils";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
-import { IconType } from "react-icons/lib";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
-const iconMap: Record<(typeof contact.socials)[number]["icon"], IconType> = {
-  instagram: FaInstagram,
-  youtube: FaYoutube,
-  facebook: FaFacebookF,
-};
-
-export function SocialLinks({
+export async function SocialLinks({
   className,
   ...props
 }: Omit<React.HTMLAttributes<HTMLUListElement>, "children">) {
+  const { data: globalData } = await getGlobal();
+
+  const socials = [
+    { name: "Instagram", url: globalData.instagram, icon: FaInstagram },
+    { name: "Facebook", url: globalData.facebook, icon: FaFacebookF },
+  ];
+
   return (
     <ul className={cn("flex gap-1", className)} {...props}>
-      {contact.socials.map((social) => {
-        const Icon = iconMap[social.icon];
+      {socials.map((social) => {
+        const Icon = social.icon;
         return (
           <li key={social.name}>
             <Link

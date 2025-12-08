@@ -1,19 +1,24 @@
 import { Link } from "@/components/link";
-import { getGlobal } from "@/data/global";
 import { cn } from "@/lib/utils";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
-export async function SocialLinks({
+const socials = [
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/emanueldellapiafotograf",
+    icon: FaInstagram,
+  },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/emanuel.dellapia",
+    icon: FaFacebookF,
+  },
+];
+
+export function SocialLinks({
   className,
   ...props
 }: Omit<React.HTMLAttributes<HTMLUListElement>, "children">) {
-  const { data: globalData } = await getGlobal();
-
-  const socials = [
-    { name: "Instagram", url: globalData.instagram, icon: FaInstagram },
-    { name: "Facebook", url: globalData.facebook, icon: FaFacebookF },
-  ];
-
   return (
     <ul className={cn("flex gap-1", className)} {...props}>
       {socials.map((social) => {

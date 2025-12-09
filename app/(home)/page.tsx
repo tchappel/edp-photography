@@ -1,29 +1,35 @@
 import { HeroGallery } from "@/components/hero-gallery";
 import { PhotoGallery } from "@/components/photo-gallery";
 import { getHomepageData } from "@/data/homepage";
-import { homeGallery } from "@/lib/home-gallery";
 import { resolveStrapiMediaUrl } from "@/lib/strapi/utils";
 
 export default async function Home() {
   const homepageData = await getHomepageData();
 
-  const heroGalleryImages = homepageData?.data?.heroGallery?.images;
+  const heroGalleryImages = homepageData.data.heroGallery.images.map(
+    (heroGalleryImage) => ({
+      title: heroGalleryImage.title,
+      description: heroGalleryImage.description,
+      alt: heroGalleryImage.image.alternativeText ?? "",
+      src: resolveStrapiMediaUrl(heroGalleryImage.image.url),
+    })
+  );
 
-  if (!heroGalleryImages || heroGalleryImages.length === 0) {
-    throw new Error("Homepage hero gallery images not found in CMS");
-  }
-
-  const images = heroGalleryImages.map((heroGalleryImage) => ({
-    title: heroGalleryImage.title,
-    description: heroGalleryImage.description,
-    alt: heroGalleryImage.image.alternativeText,
-    url: resolveStrapiMediaUrl(heroGalleryImage.image.url),
-  }));
+  const photoGalleryImages = homepageData.data.imageGallery.images.map(
+    (photoGalleryImage) => ({
+      title: photoGalleryImage.title,
+      description: photoGalleryImage.description,
+      alt: photoGalleryImage.image.alternativeText ?? "",
+      src: resolveStrapiMediaUrl(photoGalleryImage.image.url),
+      width: photoGalleryImage.image.width!,
+      height: photoGalleryImage.image.height!,
+    })
+  );
 
   return (
     <>
-      <HeroGallery images={images} />
-      <PhotoGallery photos={homeGallery} />
+      <HeroGallery images={heroGalleryImages} />
+      <PhotoGallery images={photoGalleryImages} />
     </>
   );
 }

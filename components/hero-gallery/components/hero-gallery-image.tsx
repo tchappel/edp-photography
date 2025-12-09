@@ -7,7 +7,7 @@ export type HeroGalleryImageProps = Pick<
   "alt" | "priority" | "src"
 > & {
   title: string;
-  description: string | null;
+  description?: string;
 };
 
 export function HeroGalleryImage({
@@ -39,11 +39,15 @@ export function HeroGalleryImage({
           >
             {title}
           </h3>
-          <p
-            className={cn(typography({ variant: "h6", disableGutters: true }))}
-          >
-            {description}
-          </p>
+          {description ? (
+            <p
+              className={cn(
+                typography({ variant: "h6", disableGutters: true })
+              )}
+            >
+              {description}
+            </p>
+          ) : null}
         </div>
       </figcaption>
     </figure>

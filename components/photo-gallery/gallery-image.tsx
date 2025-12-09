@@ -59,14 +59,16 @@ export function GalleryImage({
         >
           {title}
         </h3>
-        <p
-          className={cn(
-            typography({ variant: "caption", disableGutters: true }),
-            "uppercase"
-          )}
-        >
-          {description}
-        </p>
+        {description ? (
+          <p
+            className={cn(
+              typography({ variant: "caption", disableGutters: true }),
+              "uppercase"
+            )}
+          >
+            {description}
+          </p>
+        ) : null}
       </figcaption>
     </figure>
   );

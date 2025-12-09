@@ -9,15 +9,14 @@ import {
 import "react-photo-album/rows.css";
 import { GalleryImage } from "./gallery-image";
 
-interface IPhoto extends Photo {
+type PhotoGalleryImage = Photo & {
   title?: string;
   description?: string;
-  blurDataURL?: string;
-}
+};
 
 function renderNextImage(
   { alt = "", title, sizes }: RenderImageProps,
-  { photo, width, height, index }: RenderImageContext<IPhoto>
+  { photo, width, height, index }: RenderImageContext<PhotoGalleryImage>
 ) {
   return (
     <GalleryImage
@@ -29,20 +28,19 @@ function renderNextImage(
       width={width}
       height={height}
       priority={index < 3}
-      blurDataURL={photo.blurDataURL}
     />
   );
 }
 
 type PhotoGalleryProps = {
-  photos: IPhoto[];
+  images: PhotoGalleryImage[];
 };
 
-export function PhotoGallery({ photos }: PhotoGalleryProps) {
+export function PhotoGallery({ images }: PhotoGalleryProps) {
   return (
     <>
       <RowsPhotoAlbum
-        photos={photos}
+        photos={images}
         render={{ image: renderNextImage }}
         spacing={0}
         padding={0}

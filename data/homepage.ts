@@ -12,6 +12,13 @@ export async function getHomepageData() {
             },
           },
         },
+        imageGallery: {
+          populate: {
+            images: {
+              populate: ["image"],
+            },
+          },
+        },
       },
     },
   });

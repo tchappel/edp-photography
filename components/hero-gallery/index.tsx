@@ -13,15 +13,8 @@ import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { HeroGalleryImage } from "./components/hero-gallery-image";
 
-export type GalleryImage = {
-  title: string;
-  description: string;
-  alt?: string;
-  url: string;
-};
-
 type HeroGalleryProps = Omit<React.ComponentProps<"section">, "children"> & {
-  images: GalleryImage[];
+  images: React.ComponentPropsWithRef<typeof HeroGalleryImage>[];
 };
 
 const plugins = [
@@ -63,8 +56,8 @@ export function HeroGallery({ images, className, ...props }: HeroGalleryProps) {
           {images.map((image, index) => (
             <CarouselItem key={index} className="h-screen basis-full pl-0">
               <HeroGalleryImage
-                src={image.url}
-                alt={image.alt ?? ""}
+                src={image.src}
+                alt={image.alt}
                 title={image.title}
                 description={image.description}
                 priority={index === 0}

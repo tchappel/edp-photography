@@ -19,7 +19,7 @@ export function proxy(_request: NextRequest) {
   // Override Vercel's default X-Frame-Options: DENY
   // Note: ALLOW-FROM is deprecated but needed for legacy browser support
   // Modern browsers will use CSP frame-ancestors instead
-  response.headers.set("X-Frame-Options", "SAMEORIGIN");
+  response.headers.delete("X-Frame-Options");
 
   return response;
 }

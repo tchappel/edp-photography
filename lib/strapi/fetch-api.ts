@@ -1,5 +1,6 @@
 import { env } from "@/config/env";
 import type { paths } from "@/lib/strapi/types";
+import { draftMode } from "next/headers";
 import qs from "qs";
 
 type NextFetchConfig = {
@@ -62,16 +63,23 @@ export async function fetchAPI<
   path: Path,
   options: FetchAPIOptions<Body, QueryParamsFor<Path, Method>> = {}
 ): Promise<ResponseFor<Path, Method>> {
+  const { isEnabled: isDraftMode } = await draftMode();
   const { method = "GET", authToken, body, query, next } = options;
 
   const url = new URL(`api${path}`, env.NEXT_PUBLIC_STRAPI_API_URL);
 
   // Append query params
-  if (query) {
-    const queryString = qs.stringify(query, {
+  if (query || isDraftMode) {
+    const mergedQuery = {
+      ...(query || {}),
+      ...(isDraftMode && { publicationState: "preview" }),
+    };
+
+    const queryString = qs.stringify(mergedQuery, {
       encodeValuesOnly: true,
       arrayFormat: "indices",
     });
+
     if (queryString) {
       url.search = queryString;
     }
@@ -88,7 +96,7 @@ export async function fetchAPI<
     ...(body && {
       body: isFormData ? body : JSON.stringify(body),
     }),
-    ...(next && { next }),
+    ...(isDraftMode ? { cache: "no-store" as const } : next && { next }),
   };
 
   const res = await fetch(url.toString(), fetchOptions);

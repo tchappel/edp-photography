@@ -7,4 +7,5 @@ export const routes = {
   workshops: "/workshops",
   contact: "/contact",
   calendars: "/calendars",
+  services: "/services",
 } as const;
